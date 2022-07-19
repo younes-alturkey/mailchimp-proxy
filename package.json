@@ -8,7 +8,7 @@
   "description": "Node server that acts as a proxy for MailChimp api",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "keywords": [],
   "dependencies": {
