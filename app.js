@@ -13,6 +13,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
+app.get("/", (_, res) => {
+  res.send(`Listening on port ${appPort}\n`)
+})
+
 app.post("/subscribe/:email", (req, res) => {
   const { params } = req
   const { email } = params
