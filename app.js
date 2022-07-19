@@ -17,12 +17,23 @@ app.get("/", (_, res) => {
   res.send(`Listening on port ${appPort}\n`)
 })
 
-app.post("/subscribe/:email", (req, res) => {
+app.get("/lists", (_, res) => {
+  mailchimp
+    .get("/lists")
+    .then(function (results) {
+      res.send(results)
+    })
+    .catch(function (err) {
+      res.status(400).send(err)
+    })
+})
+
+app.post("/subscribe/:listId/:email", (req, res) => {
   const { params } = req
-  const { email } = params
+  const { listId, email } = params
 
   mailchimp
-    .post("/lists/8b7ac87426/members", {
+    .post(`/lists/${listId}/members`, {
       email_address: email,
       status: "subscribed",
     })
